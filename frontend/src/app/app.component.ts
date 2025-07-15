@@ -1,12 +1,19 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { AuthService } from './auth/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [CommonModule, RouterOutlet, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'frontend';
+  isLoggedIn = false;
+  constructor(public auth: AuthService) {}
+
+  ngOnInit(): void {
+    this.isLoggedIn = this.auth.isAuthenticated();
+  }
 }
