@@ -1,0 +1,45 @@
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h5 class="m-0"><i class="bi bi-plus-circle"></i> Create Group</h5>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="submit()" #groupForm="ngForm">
+        <div class="mb-3">
+          <label for="groupName" class="form-label">Group Name</label>
+          <input
+            type="text"
+            id="groupName"
+            class="form-control"
+            name="name"
+            [(ngModel)]="form.name"
+            required
+            placeholder="Enter group name"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="groupCode" class="form-label">Group Code</label>
+          <input
+            type="text"
+            id="groupCode"
+            class="form-control"
+            name="code"
+            [(ngModel)]="form.code"
+            required
+            placeholder="Enter group code"
+          />
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+          <a class="btn btn-outline-secondary" [routerLink]="['/groups']">
+            <i class="bi bi-arrow-left"></i> Back
+          </a>
+          <button class="btn btn-success" [disabled]="groupForm.invalid">
+            <i class="bi bi-check-circle"></i> Create
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
