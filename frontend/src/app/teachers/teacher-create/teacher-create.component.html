@@ -1,0 +1,113 @@
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <!-- Card Header -->
+    <div class="card-header bg-primary text-white d-flex align-items-center">
+      <i class="bi bi-person-badge-fill me-2"></i>
+      <h5 class="m-0">Create Teacher</h5>
+    </div>
+
+    <!-- Card Body -->
+    <div class="card-body">
+      <form (ngSubmit)="submit()" #formRef="ngForm" novalidate>
+        <!-- Username -->
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            id="username"
+            class="form-control"
+            [(ngModel)]="form.user.username"
+            name="username"
+            required
+            placeholder="Enter username"
+          />
+          <div *ngIf="errors.user?.username" class="text-danger small mt-1">
+            <i class="bi bi-exclamation-circle"></i>
+            {{ errors.user.username[0] }}
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            id="email"
+            type="email"
+            class="form-control"
+            [(ngModel)]="form.user.email"
+            name="email"
+            required
+            placeholder="name@example.com"
+          />
+          <div *ngIf="errors.user?.email" class="text-danger small mt-1">
+            <i class="bi bi-exclamation-circle"></i>
+            {{ errors.user.email[0] }}
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            id="password"
+            type="password"
+            class="form-control"
+            [(ngModel)]="form.user.password"
+            name="password"
+            required
+            placeholder="Enter password"
+          />
+          <div *ngIf="errors.user?.password" class="text-danger small mt-1">
+            <i class="bi bi-exclamation-circle"></i>
+            {{ errors.user.password[0] }}
+          </div>
+        </div>
+
+        <!-- First Name -->
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input
+            id="firstName"
+            class="form-control"
+            [(ngModel)]="form.user.first_name"
+            name="first_name"
+            placeholder="Enter first name"
+          />
+          <div *ngIf="errors.user?.first_name" class="text-danger small mt-1">
+            <i class="bi bi-exclamation-circle"></i>
+            {{ errors.user.first_name[0] }}
+          </div>
+        </div>
+
+        <!-- Last Name -->
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input
+            id="lastName"
+            class="form-control"
+            [(ngModel)]="form.user.last_name"
+            name="last_name"
+            placeholder="Enter last name"
+          />
+          <div *ngIf="errors.user?.last_name" class="text-danger small mt-1">
+            <i class="bi bi-exclamation-circle"></i>
+            {{ errors.user.last_name[0] }}
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex gap-2 mt-4">
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="formRef.invalid"
+          >
+            <i class="bi bi-plus-circle me-1"></i> Create
+          </button>
+          <a class="btn btn-outline-secondary" routerLink="/teachers">
+            <i class="bi bi-x-circle me-1"></i> Cancel
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

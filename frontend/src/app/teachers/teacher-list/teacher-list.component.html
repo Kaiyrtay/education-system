@@ -1,61 +1,56 @@
 <div class="container mt-4">
   <div class="card shadow-sm">
-    <!-- Header -->
     <div
       class="card-header d-flex justify-content-between align-items-center bg-primary text-white"
     >
       <h5 class="m-0 d-flex align-items-center">
-        <i class="bi bi-journal-text me-2"></i> Subjects
+        <i class="bi bi-person-badge-fill me-2"></i> Teachers
       </h5>
-      <a class="btn btn-light btn-sm fw-bold" routerLink="/subjects/create">
-        <i class="bi bi-plus-circle me-1"></i> Create Subject
+      <a class="btn btn-light btn-sm fw-bold" routerLink="/teachers/create">
+        <i class="bi bi-plus-circle me-1"></i> Create Teacher
       </a>
     </div>
 
-    <!-- Empty state -->
-    <div *ngIf="subjects.length === 0" class="alert alert-info m-3">
-      <i class="bi bi-info-circle me-2"></i> No subjects found.
+    <div *ngIf="teachers.length === 0" class="alert alert-info m-3">
+      <i class="bi bi-info-circle me-2"></i> No teachers found.
     </div>
 
-    <!-- Table -->
-    <div class="table-responsive" *ngIf="subjects.length > 0">
+    <div class="table-responsive" *ngIf="teachers.length > 0">
       <table
         class="table table-hover table-striped align-middle mb-0 text-center"
       >
         <thead class="table-light">
           <tr>
             <th>ID</th>
-            <th>Code</th>
+            <th>Username</th>
+            <th>Email</th>
             <th>Name</th>
-            <th>Description</th>
             <th style="width: 240px">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let s of subjects">
-            <td>{{ s.id }}</td>
-            <td>{{ s.code }}</td>
-            <td>{{ s.name }}</td>
-            <td>{{ s.desc || "—" }}</td>
-            <td class="text-center">
+          <tr *ngFor="let t of teachers">
+            <td>{{ t.id }}</td>
+            <td>{{ t.user?.username }}</td>
+            <td>{{ t.user?.email }}</td>
+            <td>{{ t.user?.first_name }} {{ t.user?.last_name }}</td>
+            <td>
               <div class="btn-group btn-group-sm" role="group">
                 <a
                   class="btn btn-info text-white"
-                  [routerLink]="['/subjects', s.id]"
-                  title="View"
+                  [routerLink]="['/teachers', t.id]"
                 >
                   <i class="bi bi-eye"></i>
                 </a>
                 <a
                   class="btn btn-warning text-dark"
-                  [routerLink]="['/subjects', s.id, 'edit']"
-                  title="Edit"
+                  [routerLink]="['/teachers', t.id, 'edit']"
                 >
                   <i class="bi bi-pencil-square"></i>
                 </a>
                 <button
                   class="btn btn-danger"
-                  (click)="delete(s.id)"
+                  (click)="delete(t.id!)"
                   title="Delete"
                 >
                   <i class="bi bi-trash"></i>

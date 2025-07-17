@@ -39,7 +39,7 @@
             routerLink="/subjects"
             routerLinkActive="active"
           >
-            <i class="bi bi-book me-1"></i> Subjects
+            <i class="bi bi-journal-text me-1"></i> Subjects
           </a>
         </li>
         <li *ngIf="isLoggedIn" class="nav-item">
@@ -49,6 +49,15 @@
             routerLinkActive="active"
           >
             <i class="bi bi-people-fill me-1"></i> Students
+          </a>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item">
+          <a
+            class="nav-link px-3 text-primary"
+            routerLink="/teachers"
+            routerLinkActive="active"
+          >
+            <i class="bi bi-person-badge-fill me-1"></i> Teachers
           </a>
         </li>
         <li *ngIf="isLoggedIn" class="nav-item dropdown">
