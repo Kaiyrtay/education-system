@@ -1,92 +1,83 @@
-<div class="container mt-4" *ngIf="teacher">
+<div class="container mt-4">
   <div class="card shadow-sm">
-    <!-- Card Header -->
-    <div class="card-header bg-warning text-dark d-flex align-items-center">
+    <div class="card-header bg-primary text-white d-flex align-items-center">
       <i class="bi bi-pencil-square me-2"></i>
       <h5 class="m-0">Edit Teacher</h5>
     </div>
 
-    <!-- Card Body -->
-    <div class="card-body">
-      <form (ngSubmit)="submit()" #editForm="ngForm" novalidate>
-        <!-- Username -->
+    <div *ngIf="errorMessage" class="alert alert-danger m-3">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="loading && !errorMessage" class="alert alert-secondary m-3">
+      Loading teacher...
+    </div>
+
+    <div class="card-body" *ngIf="!loading && !errorMessage">
+      <form (ngSubmit)="submit()" #editForm="ngForm">
         <div class="mb-3">
-          <label for="username" class="form-label">Username</label>
+          <label class="form-label">Username</label>
           <input
-            id="username"
             class="form-control"
-            [(ngModel)]="teacher.user.username"
             name="username"
+            [(ngModel)]="form.user.username"
             required
-            placeholder="Enter username"
           />
         </div>
 
-        <!-- Email -->
         <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
+          <label class="form-label">Email</label>
           <input
-            id="email"
-            type="email"
             class="form-control"
-            [(ngModel)]="teacher.user.email"
+            type="email"
             name="email"
+            [(ngModel)]="form.user.email"
             required
-            placeholder="name@example.com"
           />
         </div>
 
-        <!-- Password -->
         <div class="mb-3">
-          <label for="password" class="form-label"
-            >Password (leave blank if unchanged)</label
+          <label class="form-label"
+            >Password (leave blank to keep current)</label
           >
           <input
-            id="password"
+            class="form-control"
             type="password"
-            class="form-control"
-            [(ngModel)]="teacher.user.password"
             name="password"
-            placeholder="Enter new password"
+            [(ngModel)]="form.user.password"
           />
         </div>
 
-        <!-- First Name -->
         <div class="mb-3">
-          <label for="firstName" class="form-label">First Name</label>
+          <label class="form-label">First Name</label>
           <input
-            id="firstName"
             class="form-control"
-            [(ngModel)]="teacher.user.first_name"
             name="first_name"
-            placeholder="Enter first name"
+            [(ngModel)]="form.user.first_name"
           />
         </div>
 
-        <!-- Last Name -->
         <div class="mb-3">
-          <label for="lastName" class="form-label">Last Name</label>
+          <label class="form-label">Last Name</label>
           <input
-            id="lastName"
             class="form-control"
-            [(ngModel)]="teacher.user.last_name"
             name="last_name"
-            placeholder="Enter last name"
+            [(ngModel)]="form.user.last_name"
           />
         </div>
 
-        <!-- Buttons -->
-        <div class="d-flex gap-2 mt-4">
+        <div class="d-flex gap-2">
           <button
-            class="btn btn-warning text-dark"
+            class="btn btn-primary"
             type="submit"
             [disabled]="editForm.invalid"
           >
-            <i class="bi bi-save me-1"></i> Save Changes
+            Save
           </button>
-          <a class="btn btn-outline-secondary" routerLink="/teachers">
-            <i class="bi bi-arrow-left me-1"></i> Cancel
-          </a>
+          <button class="btn btn-danger" type="button" (click)="delete()">
+            Delete
+          </button>
+          <a class="btn btn-outline-secondary" routerLink="/teachers">Cancel</a>
         </div>
       </form>
     </div>

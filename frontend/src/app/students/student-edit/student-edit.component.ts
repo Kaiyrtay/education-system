@@ -20,7 +20,6 @@ export class StudentEditComponent implements OnInit {
     user: {
       username: '',
       email: '',
-      // password left blank unless user wants to reset
       password: '',
       first_name: '',
       last_name: '',
@@ -43,7 +42,6 @@ export class StudentEditComponent implements OnInit {
       return;
     }
 
-    // load groups
     this.groupService.list().subscribe({
       next: (res: any) => {
         this.groups = Array.isArray(res) ? res : [res];
@@ -51,7 +49,6 @@ export class StudentEditComponent implements OnInit {
       error: () => alert('Failed to load groups'),
     });
 
-    // load student
     this.studentService.get(this.id).subscribe({
       next: (res: any) => {
         const stu = Array.isArray(res) ? res[0] : res;
@@ -72,7 +69,6 @@ export class StudentEditComponent implements OnInit {
   }
 
   submit(): void {
-    // Don't send empty password unless user entered one
     const payload: any = {
       user: {
         username: this.form.user.username,

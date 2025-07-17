@@ -11,11 +11,14 @@
       </a>
     </div>
 
-    <div *ngIf="teachers.length === 0" class="alert alert-info m-3">
+    <div
+      *ngIf="!teachers || teachers.length === 0"
+      class="alert alert-info m-3"
+    >
       <i class="bi bi-info-circle me-2"></i> No teachers found.
     </div>
 
-    <div class="table-responsive" *ngIf="teachers.length > 0">
+    <div class="table-responsive" *ngIf="teachers && teachers.length > 0">
       <table
         class="table table-hover table-striped align-middle mb-0 text-center"
       >
@@ -31,9 +34,11 @@
         <tbody>
           <tr *ngFor="let t of teachers">
             <td>{{ t.id }}</td>
-            <td>{{ t.user?.username }}</td>
-            <td>{{ t.user?.email }}</td>
-            <td>{{ t.user?.first_name }} {{ t.user?.last_name }}</td>
+            <td>{{ t.user?.username || "—" }}</td>
+            <td>{{ t.user?.email || "—" }}</td>
+            <td>
+              {{ t.user?.first_name || "" }} {{ t.user?.last_name || "" }}
+            </td>
             <td>
               <div class="btn-group btn-group-sm" role="group">
                 <a

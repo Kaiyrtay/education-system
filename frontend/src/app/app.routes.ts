@@ -5,6 +5,7 @@ import { groupRoutes } from './groups/group.routes';
 import { studentRoutes } from './students/students.routes';
 import { subjectRoutes } from './subjects/subject.routes';
 import { teacherRoutes } from './teachers/teacher.routes';
+import { scheduleRoutes } from './schedules/schedule.routes';
 
 export const routes: Routes = [
   ...authRoutes,
@@ -13,4 +14,5 @@ export const routes: Routes = [
   ...studentRoutes,
   ...subjectRoutes,
   ...teacherRoutes,
+  ...scheduleRoutes,
 ];

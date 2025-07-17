@@ -60,6 +60,15 @@
             <i class="bi bi-person-badge-fill me-1"></i> Teachers
           </a>
         </li>
+        <li *ngIf="isLoggedIn" class="nav-item">
+          <a
+            class="nav-link px-3 text-primary"
+            routerLink="/schedules"
+            routerLinkActive="active"
+          >
+            <i class="bi bi-calendar3 me-1"></i> Schedules
+          </a>
+        </li>
         <li *ngIf="isLoggedIn" class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle px-3 text-primary"

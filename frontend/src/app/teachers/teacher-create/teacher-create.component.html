@@ -1,15 +1,12 @@
 <div class="container mt-4">
   <div class="card shadow-sm">
-    <!-- Card Header -->
     <div class="card-header bg-primary text-white d-flex align-items-center">
       <i class="bi bi-person-badge-fill me-2"></i>
       <h5 class="m-0">Create Teacher</h5>
     </div>
 
-    <!-- Card Body -->
     <div class="card-body">
       <form (ngSubmit)="submit()" #formRef="ngForm" novalidate>
-        <!-- Username -->
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>
           <input
@@ -26,7 +23,6 @@
           </div>
         </div>
 
-        <!-- Email -->
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
           <input
@@ -44,7 +40,6 @@
           </div>
         </div>
 
-        <!-- Password -->
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
           <input
@@ -62,7 +57,6 @@
           </div>
         </div>
 
-        <!-- First Name -->
         <div class="mb-3">
           <label for="firstName" class="form-label">First Name</label>
           <input
@@ -78,7 +72,6 @@
           </div>
         </div>
 
-        <!-- Last Name -->
         <div class="mb-3">
           <label for="lastName" class="form-label">Last Name</label>
           <input
@@ -94,7 +87,6 @@
           </div>
         </div>
 
-        <!-- Buttons -->
         <div class="d-flex gap-2 mt-4">
           <button
             class="btn btn-primary"
