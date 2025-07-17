@@ -36,6 +36,15 @@
         <li *ngIf="isLoggedIn" class="nav-item">
           <a
             class="nav-link px-3 text-primary"
+            routerLink="/subjects"
+            routerLinkActive="active"
+          >
+            <i class="bi bi-book me-1"></i> Subjects
+          </a>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item">
+          <a
+            class="nav-link px-3 text-primary"
             routerLink="/students"
             routerLinkActive="active"
           >

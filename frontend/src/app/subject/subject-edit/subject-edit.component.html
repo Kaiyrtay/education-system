@@ -1,0 +1,74 @@
+<div class="container mt-4" *ngIf="!loading; else loadingTpl">
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <div class="card shadow-sm" *ngIf="!error">
+    <div class="card-header bg-warning text-dark d-flex align-items-center">
+      <i class="bi bi-pencil-square me-2"></i>
+      <h5 class="m-0">Edit Subject</h5>
+    </div>
+    <div class="card-body">
+      <form #subjectForm="ngForm" (ngSubmit)="submit(subjectForm)" novalidate>
+        <div class="mb-3">
+          <label for="subjCode" class="form-label">Code</label>
+          <input
+            id="subjCode"
+            class="form-control"
+            name="code"
+            [(ngModel)]="form.code"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="subjName" class="form-label">Name</label>
+          <input
+            id="subjName"
+            class="form-control"
+            name="name"
+            [(ngModel)]="form.name"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="subjDesc" class="form-label">Description</label>
+          <textarea
+            id="subjDesc"
+            class="form-control"
+            rows="3"
+            name="desc"
+            [(ngModel)]="form.desc"
+            placeholder="Optional description"
+          ></textarea>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2 mt-4">
+          <button
+            class="btn btn-warning"
+            type="submit"
+            [disabled]="subjectForm.invalid || saving"
+          >
+            <i class="bi bi-save me-1"></i> Update
+          </button>
+          <button class="btn btn-danger" type="button" (click)="delete()">
+            <i class="bi bi-trash me-1"></i> Delete
+          </button>
+          <a class="btn btn-outline-secondary" [routerLink]="['/subjects', id]">
+            <i class="bi bi-arrow-left me-1"></i> Cancel
+          </a>
+        </div>
+
+        <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingTpl>
+  <div class="container mt-4">
+    <div class="alert alert-info">
+      <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+      Loading subject...
+    </div>
+  </div>
+</ng-template>
