@@ -1,21 +1,89 @@
-<nav class="navbar navbar-expand navbar-light bg-light px-3">
-  <a class="navbar-brand" href="#">School System</a>
-  <div class="collapse navbar-collapse">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li *ngIf="isLoggedIn" class="nav-item">
-        <a class="nav-link" routerLink="/user">User</a>
-      </li>
-      <li *ngIf="isLoggedIn" class="nav-item">
-        <a class="nav-link" routerLink="/groups">Groups</a>
-      </li>
-      <li *ngIf="isLoggedIn" class="nav-item">
-        <a class="nav-link" routerLink="/logout">Logout</a>
-      </li>
-      <li *ngIf="!isLoggedIn" class="nav-item">
-        <a class="nav-link" routerLink="/login">Login</a>
-      </li>
-    </ul>
+<nav
+  class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm"
+>
+  <div class="container-fluid">
+    <a
+      class="navbar-brand fw-bold text-primary d-flex align-items-center"
+      href="#"
+    >
+      <i class="bi bi-mortarboard-fill me-2 fs-4 text-success"></i>
+      School System
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li *ngIf="isLoggedIn" class="nav-item">
+          <a
+            class="nav-link px-3 text-primary"
+            routerLink="/groups"
+            routerLinkActive="active"
+          >
+            <i class="bi bi-collection me-1"></i> Groups
+          </a>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item">
+          <a
+            class="nav-link px-3 text-primary"
+            routerLink="/students"
+            routerLinkActive="active"
+          >
+            <i class="bi bi-people-fill me-1"></i> Students
+          </a>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle px-3 text-primary"
+            href="#"
+            id="userMenuLight"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="bi bi-person-circle me-1"></i> User
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end shadow"
+            aria-labelledby="userMenuLight"
+          >
+            <li>
+              <a class="dropdown-item" routerLink="/user">
+                <i class="bi bi-person-lines-fill me-2"></i> Profile
+              </a>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item text-danger" routerLink="/logout">
+                <i class="bi bi-box-arrow-right me-2"></i> Logout
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li *ngIf="!isLoggedIn" class="nav-item">
+          <a
+            class="nav-link px-3 text-success"
+            routerLink="/login"
+            routerLinkActive="active"
+          >
+            <i class="bi bi-box-arrow-in-right me-1"></i> Login
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
-
-<router-outlet></router-outlet>
+<!-- Page content -->
+<div class="container mt-4">
+  <router-outlet></router-outlet>
+</div>
