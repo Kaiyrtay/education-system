@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { StudentService } from '../students.service';
-import { GroupService } from '../../group/group.service';
+import { GroupService } from '../../groups/group.service';
 
 @Component({
   selector: 'app-student-create',

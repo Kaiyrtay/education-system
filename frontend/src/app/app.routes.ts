@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 import { authRoutes } from './auth/auth.routes';
 import { userRoutes } from './users/user.routes';
-import { groupRoutes } from './group/group.routes';
+import { groupRoutes } from './groups/group.routes';
 import { studentRoutes } from './students/students.routes';
-import { subjectRoutes } from './subject/subject.routes';
+import { subjectRoutes } from './subjects/subject.routes';
 
 export const routes: Routes = [
   ...authRoutes,
