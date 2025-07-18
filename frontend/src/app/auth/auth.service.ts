@@ -5,12 +5,13 @@ import { catchError, of, switchMap, tap } from 'rxjs';
 import { Observable } from 'rxjs';
 import { LoginRequest, LoginResponse } from './auth.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   private tokenUrl = 'http://localhost:8000/api/token/';
+  private refreshUrl = 'http://localhost:8000/api/token/refresh/';
   private userUrl = 'http://localhost:8000/api/users/user/';
+
+  private _isRefreshing = false;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -29,15 +30,46 @@ export class AuthService {
     );
   }
 
-  logout(): void {
+  refreshAccessToken() {
+    const refresh = this.getRefreshToken();
+    if (!refresh) return of(null);
+
+    if (this._isRefreshing) return of(null);
+    this._isRefreshing = true;
+
+    return this.http
+      .post<{ access: string }>(this.refreshUrl, { refresh })
+      .pipe(
+        tap((res) => {
+          if (res?.access) {
+            localStorage.setItem('access_token', res.access);
+          }
+        }),
+        tap(() => (this._isRefreshing = false)),
+        catchError((err) => {
+          this._isRefreshing = false;
+          this.forceLogout();
+          return of(null);
+        })
+      );
+  }
+
+  private forceLogout() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
     localStorage.removeItem('current_role');
     this.router.navigate(['/login']);
   }
 
+  logout(): void {
+    this.forceLogout();
+  }
+
   getAccessToken(): string | null {
     return localStorage.getItem('access_token');
+  }
+  getRefreshToken(): string | null {
+    return localStorage.getItem('refresh_token');
   }
 
   isAuthenticated(): boolean {
@@ -47,7 +79,6 @@ export class AuthService {
   getRole(): string | null {
     return localStorage.getItem('current_role');
   }
-
   isAdmin(): boolean {
     return this.getRole() === 'admin';
   }
@@ -63,26 +94,8 @@ export class AuthService {
       tap((u) => {
         if (u?.role) {
           localStorage.setItem('current_role', u.role);
-        } else {
-          const role = this.decodeRoleFromToken();
-          if (role) localStorage.setItem('current_role', role);
         }
       })
     );
-  }
-
-  private decodeRoleFromToken(): string | null {
-    const token = this.getAccessToken();
-    if (!token) return null;
-    const parts = token.split('.');
-    if (parts.length !== 3) return null;
-    try {
-      const payload = JSON.parse(
-        atob(parts[1].replace(/-/g, '+').replace(/_/g, '/'))
-      );
-      return payload?.role ?? null;
-    } catch {
-      return null;
-    }
   }
 }
