@@ -1,0 +1,102 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand fw-bold d-flex align-items-center" routerLink="/">
+      <img
+        src="assets/logo.png"
+        alt="EduSystem Logo"
+        height="32"
+        class="me-2"
+      />
+      EduSystem
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <!-- ADMIN -->
+        <ng-container *ngIf="auth.isAdmin()">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/users">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/teachers">Teachers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/students">Students</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/groups">Groups</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/subjects">Subjects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/schedules">Schedules</a>
+          </li>
+        </ng-container>
+
+        <!-- INSTRUCTOR -->
+        <ng-container *ngIf="auth.isTeacher()">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/user">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/subjects">Courses</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/groups">Classes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/students">Students</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/schedules">Schedule</a>
+          </li>
+        </ng-container>
+
+        <!-- STUDENT -->
+        <ng-container *ngIf="auth.isStudent()">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/user">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/groups">My Class</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/subjects">Courses</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/teachers">Instructors</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/schedules">Schedule</a>
+          </li>
+        </ng-container>
+
+        <!-- LOGOUT -->
+        <li class="nav-item ms-lg-3" *ngIf="auth.isAuthenticated()">
+          <button
+            class="btn btn-light btn-sm text-primary fw-medium"
+            (click)="logout()"
+          >
+            Logout
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
