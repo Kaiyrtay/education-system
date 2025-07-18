@@ -1,1 +1,274 @@
-<p>schedule-edit works!</p>
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <!-- Card Header -->
+    <div class="card-header d-flex align-items-center bg-primary text-white">
+      <h5 class="m-0 d-flex align-items-center">
+        <i class="bi bi-pencil-square me-2"></i> Edit Schedule
+      </h5>
+    </div>
+
+    <!-- Card Body -->
+    <div class="card-body" *ngIf="!loading; else loadingTpl">
+      <!-- Server Error -->
+      <div *ngIf="serverError" class="alert alert-danger mb-3">
+        <i class="bi bi-exclamation-triangle me-2"></i> {{ serverError }}
+      </div>
+
+      <!-- Form -->
+      <form #schedForm="ngForm" (ngSubmit)="submit(schedForm)" novalidate>
+        <!-- Group -->
+        <div class="mb-3">
+          <label class="form-label">
+            Group <span class="text-danger">*</span>
+          </label>
+          <select
+            class="form-select"
+            name="group"
+            required
+            [(ngModel)]="form.group"
+            #groupField="ngModel"
+            [class.is-invalid]="
+              groupField.invalid &&
+              (groupField.dirty || groupField.touched || schedForm.submitted)
+            "
+          >
+            <option [ngValue]="null">-- Select Group --</option>
+            <option *ngFor="let g of groups" [ngValue]="g.id">
+              {{ getGroupDisplayName(g) }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              groupField.invalid &&
+              (groupField.dirty || groupField.touched || schedForm.submitted)
+            "
+            class="invalid-feedback"
+          >
+            Group is required.
+          </div>
+        </div>
+
+        <!-- Subject -->
+        <div class="mb-3">
+          <label class="form-label">
+            Subject <span class="text-danger">*</span>
+          </label>
+          <select
+            class="form-select"
+            name="subject"
+            required
+            [(ngModel)]="form.subject"
+            #subjectField="ngModel"
+            [class.is-invalid]="
+              subjectField.invalid &&
+              (subjectField.dirty ||
+                subjectField.touched ||
+                schedForm.submitted)
+            "
+          >
+            <option [ngValue]="null">-- Select Subject --</option>
+            <option *ngFor="let s of subjects" [ngValue]="s.id">
+              {{ getSubjectDisplayName(s) }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              subjectField.invalid &&
+              (subjectField.dirty ||
+                subjectField.touched ||
+                schedForm.submitted)
+            "
+            class="invalid-feedback"
+          >
+            Subject is required.
+          </div>
+        </div>
+
+        <!-- Teacher -->
+        <div class="mb-3">
+          <label class="form-label">
+            Teacher <span class="text-danger">*</span>
+          </label>
+          <select
+            class="form-select"
+            name="teacher"
+            required
+            [(ngModel)]="form.teacher"
+            #teacherField="ngModel"
+            [class.is-invalid]="
+              teacherField.invalid &&
+              (teacherField.dirty ||
+                teacherField.touched ||
+                schedForm.submitted)
+            "
+          >
+            <option [ngValue]="null">-- Select Teacher --</option>
+            <option *ngFor="let t of teachers" [ngValue]="t.id">
+              {{ getTeacherDisplayName(t) }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              teacherField.invalid &&
+              (teacherField.dirty ||
+                teacherField.touched ||
+                schedForm.submitted)
+            "
+            class="invalid-feedback"
+          >
+            Teacher is required.
+          </div>
+        </div>
+
+        <!-- Week Day -->
+        <div class="mb-3">
+          <label class="form-label">
+            Week Day <span class="text-danger">*</span>
+          </label>
+          <select
+            class="form-select"
+            name="week_day"
+            required
+            [(ngModel)]="form.week_day"
+            #weekDayField="ngModel"
+            [class.is-invalid]="
+              weekDayField.invalid &&
+              (weekDayField.dirty ||
+                weekDayField.touched ||
+                schedForm.submitted)
+            "
+          >
+            <option [ngValue]="null">-- Select Day --</option>
+            <option *ngFor="let d of weekdays" [ngValue]="d.value">
+              {{ d.label }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              weekDayField.invalid &&
+              (weekDayField.dirty ||
+                weekDayField.touched ||
+                schedForm.submitted)
+            "
+            class="invalid-feedback"
+          >
+            Day is required.
+          </div>
+        </div>
+
+        <!-- Start / End Time -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">
+              Start Time <span class="text-danger">*</span>
+            </label>
+            <input
+              type="time"
+              class="form-control"
+              name="start_time"
+              required
+              [(ngModel)]="form.start_time"
+              #startTimeField="ngModel"
+              (change)="validateTimes()"
+              [class.is-invalid]="
+                (startTimeField.invalid &&
+                  (startTimeField.dirty ||
+                    startTimeField.touched ||
+                    schedForm.submitted)) ||
+                timeError
+              "
+            />
+            <div
+              *ngIf="
+                startTimeField.invalid &&
+                (startTimeField.dirty ||
+                  startTimeField.touched ||
+                  schedForm.submitted)
+              "
+              class="invalid-feedback"
+            >
+              Start time is required.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">
+              End Time <span class="text-danger">*</span>
+            </label>
+            <input
+              type="time"
+              class="form-control"
+              name="end_time"
+              required
+              [(ngModel)]="form.end_time"
+              #endTimeField="ngModel"
+              (change)="validateTimes()"
+              [class.is-invalid]="
+                (endTimeField.invalid &&
+                  (endTimeField.dirty ||
+                    endTimeField.touched ||
+                    schedForm.submitted)) ||
+                timeError
+              "
+            />
+            <div
+              *ngIf="
+                endTimeField.invalid &&
+                (endTimeField.dirty ||
+                  endTimeField.touched ||
+                  schedForm.submitted)
+              "
+              class="invalid-feedback"
+            >
+              End time is required.
+            </div>
+          </div>
+        </div>
+
+        <!-- Time Error -->
+        <div *ngIf="timeError" class="alert alert-danger mb-3">
+          <i class="bi bi-exclamation-triangle me-2"></i> {{ timeError }}
+        </div>
+
+        <!-- Actions -->
+        <div class="d-flex gap-2">
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="!isFormValid() || submitting"
+          >
+            <span
+              *ngIf="submitting"
+              class="spinner-border spinner-border-sm me-2"
+            ></span>
+            {{ submitting ? "Saving..." : "Save" }}
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="delete()"
+            [disabled]="submitting"
+          >
+            <i class="bi bi-trash me-1"></i> Delete
+          </button>
+
+          <a
+            class="btn btn-outline-secondary"
+            routerLink="/schedules"
+            [class.disabled]="submitting"
+          >
+            <i class="bi bi-arrow-left me-1"></i> Cancel
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Loading Template -->
+<ng-template #loadingTpl>
+  <div class="p-4 text-center text-muted">
+    <div class="spinner-border me-2" role="status"></div>
+    Loading schedule...
+  </div>
+</ng-template>

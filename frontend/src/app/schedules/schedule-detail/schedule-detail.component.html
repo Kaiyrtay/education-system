@@ -1,1 +1,53 @@
-<p>schedule-detail works!</p>
+<div class="container mt-4" *ngIf="schedule">
+  <div class="card shadow-sm">
+    <!-- Card Header -->
+    <div class="card-header d-flex align-items-center bg-primary text-white">
+      <h5 class="m-0 d-flex align-items-center">
+        <i class="bi bi-calendar-week me-2"></i> Schedule Details
+      </h5>
+    </div>
+
+    <!-- Card Body -->
+    <div class="card-body">
+      <ul class="list-group mb-4">
+        <li class="list-group-item">
+          <strong>ID:</strong> {{ schedule.id ?? "N/A" }}
+        </li>
+        <li class="list-group-item">
+          <strong>Group:</strong> {{ groupLabel() }}
+        </li>
+        <li class="list-group-item">
+          <strong>Subject:</strong> {{ subjectLabel() }}
+        </li>
+        <li class="list-group-item">
+          <strong>Teacher:</strong> {{ teacherLabel() }}
+        </li>
+        <li class="list-group-item">
+          <strong>Day:</strong> {{ getWeekDayName(schedule.week_day) }}
+        </li>
+        <li class="list-group-item">
+          <strong>Start Time:</strong> {{ schedule.start_time || "—" }}
+        </li>
+        <li class="list-group-item">
+          <strong>End Time:</strong> {{ schedule.end_time || "—" }}
+        </li>
+      </ul>
+
+      <!-- Action Buttons -->
+      <div class="d-flex gap-2">
+        <a
+          class="btn btn-warning text-dark"
+          [routerLink]="['/schedules', schedule.id, 'edit']"
+        >
+          <i class="bi bi-pencil-square me-1"></i> Edit
+        </a>
+        <button class="btn btn-danger" (click)="delete()">
+          <i class="bi bi-trash me-1"></i> Delete
+        </button>
+        <a class="btn btn-outline-secondary" routerLink="/schedules">
+          <i class="bi bi-arrow-left me-1"></i> Back to List
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

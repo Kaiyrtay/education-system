@@ -1,1 +1,175 @@
-<p>schedule-create works!</p>
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <!-- Card Header -->
+    <div class="card-header d-flex align-items-center bg-primary text-white">
+      <h5 class="m-0 d-flex align-items-center">
+        <i class="bi bi-plus-circle me-2"></i> Create Schedule
+      </h5>
+    </div>
+
+    <!-- Card Body -->
+    <div class="card-body">
+      <!-- Server Error -->
+      <div *ngIf="serverError" class="alert alert-danger mb-3">
+        <i class="bi bi-exclamation-triangle me-2"></i> {{ serverError }}
+      </div>
+
+      <!-- Form -->
+      <form #schedForm="ngForm" (ngSubmit)="submit(schedForm)" novalidate>
+        <!-- Group -->
+        <div class="mb-3">
+          <label for="group" class="form-label"
+            >Group <span class="text-danger">*</span></label
+          >
+          <select
+            id="group"
+            class="form-select"
+            name="group"
+            required
+            [(ngModel)]="form.group"
+          >
+            <option [ngValue]="undefined">-- Select Group --</option>
+            <option *ngFor="let g of groups" [ngValue]="g.id">
+              {{ g.name || g.code || g.id }}
+            </option>
+          </select>
+          <div
+            *ngIf="schedForm.submitted && !form.group"
+            class="text-danger small"
+          >
+            Group is required.
+          </div>
+        </div>
+
+        <!-- Subject -->
+        <div class="mb-3">
+          <label for="subject" class="form-label"
+            >Subject <span class="text-danger">*</span></label
+          >
+          <select
+            id="subject"
+            class="form-select"
+            name="subject"
+            required
+            [(ngModel)]="form.subject"
+          >
+            <option [ngValue]="undefined">-- Select Subject --</option>
+            <option *ngFor="let s of subjects" [ngValue]="s.id">
+              {{ s.name || s.code || s.id }}
+            </option>
+          </select>
+          <div
+            *ngIf="schedForm.submitted && !form.subject"
+            class="text-danger small"
+          >
+            Subject is required.
+          </div>
+        </div>
+
+        <!-- Teacher -->
+        <div class="mb-3">
+          <label for="teacher" class="form-label"
+            >Teacher <span class="text-danger">*</span></label
+          >
+          <select
+            id="teacher"
+            class="form-select"
+            name="teacher"
+            required
+            [(ngModel)]="form.teacher"
+          >
+            <option [ngValue]="undefined">-- Select Teacher --</option>
+            <option *ngFor="let t of teachers" [ngValue]="t.id">
+              {{ (t.user?.first_name || "") + " " + (t.user?.last_name || "") }}
+              <span *ngIf="!(t.user?.first_name || t.user?.last_name)">
+                {{ t.user?.username || t.id }}
+              </span>
+            </option>
+          </select>
+          <div
+            *ngIf="schedForm.submitted && !form.teacher"
+            class="text-danger small"
+          >
+            Teacher is required.
+          </div>
+        </div>
+
+        <!-- Week Day -->
+        <div class="mb-3">
+          <label for="weekDay" class="form-label"
+            >Week Day <span class="text-danger">*</span></label
+          >
+          <select
+            id="weekDay"
+            class="form-select"
+            name="week_day"
+            required
+            [(ngModel)]="form.week_day"
+          >
+            <option [ngValue]="undefined">-- Select Day --</option>
+            <option *ngFor="let d of weekdays" [ngValue]="d.value">
+              {{ d.label }}
+            </option>
+          </select>
+          <div
+            *ngIf="schedForm.submitted && form.week_day == null"
+            class="text-danger small"
+          >
+            Day is required.
+          </div>
+        </div>
+
+        <!-- Start / End Time -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="startTime" class="form-label"
+              >Start Time <span class="text-danger">*</span></label
+            >
+            <input
+              type="time"
+              id="startTime"
+              class="form-control"
+              name="start_time"
+              required
+              [(ngModel)]="form.start_time"
+              (change)="validateTimes()"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="endTime" class="form-label"
+              >End Time <span class="text-danger">*</span></label
+            >
+            <input
+              type="time"
+              id="endTime"
+              class="form-control"
+              name="end_time"
+              required
+              [(ngModel)]="form.end_time"
+              (change)="validateTimes()"
+            />
+          </div>
+        </div>
+
+        <!-- Time Error -->
+        <div *ngIf="timeError" class="text-danger small mb-3">
+          {{ timeError }}
+        </div>
+
+        <!-- Actions -->
+        <div class="d-flex gap-2">
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="schedForm.invalid || !!timeError"
+          >
+            <i class="bi bi-plus-circle me-1"></i> Create
+          </button>
+          <a class="btn btn-outline-secondary" routerLink="/schedules">
+            <i class="bi bi-x-circle me-1"></i> Cancel
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

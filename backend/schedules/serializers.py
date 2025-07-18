@@ -3,6 +3,19 @@ from .models import Schedule
 
 
 class ScheduleSerializer(serializers.ModelSerializer):
+    group_info = serializers.SerializerMethodField(read_only=True)
+    subject_info = serializers.SerializerMethodField(read_only=True)
+    teacher_info = serializers.SerializerMethodField(read_only=True)
+
+    def get_group_info(self, obj):
+        return {"id": obj.group.id, "name": str(obj.group)} if obj.group else None
+
+    def get_subject_info(self, obj):
+        return {"id": obj.subject.id, "name": str(obj.subject)} if obj.subject else None
+
+    def get_teacher_info(self, obj):
+        return {"id": obj.teacher.id, "name": str(obj.teacher)} if obj.teacher else None
+
     class Meta:
         model = Schedule
         fields = "__all__"
