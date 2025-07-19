@@ -26,76 +26,61 @@
       <ul class="navbar-nav ms-auto">
         <!-- ADMIN -->
         <ng-container *ngIf="auth.isAdmin()">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/users">Users</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/teachers">Teachers</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/students">Students</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/groups">Groups</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/subjects">Subjects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/schedules">Schedules</a>
-          </li>
+          <ng-container
+            *ngFor="
+              let link of [
+                { path: 'users', label: 'Users' },
+                { path: 'teachers', label: 'Teachers' },
+                { path: 'students', label: 'Students' },
+                { path: 'groups', label: 'Groups' },
+                { path: 'subjects', label: 'Subjects' },
+                { path: 'schedules', label: 'Schedules' }
+              ]
+            "
+          >
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="link.path">{{ link.label }}</a>
+            </li>
+          </ng-container>
         </ng-container>
 
-        <!-- INSTRUCTOR -->
+        <!-- TEACHER -->
         <ng-container *ngIf="auth.isTeacher()">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/my-schedule">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/subjects">Courses</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/groups">Classes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/students">Students</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/schedules">Schedule</a>
-          </li>
+          <ng-container
+            *ngFor="
+              let link of [
+                { path: 'my-schedule', label: 'Dashboard' },
+                { path: 'subjects', label: 'Courses' },
+                { path: 'groups', label: 'Classes' },
+                { path: 'students', label: 'Students' }
+              ]
+            "
+          >
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="link.path">{{ link.label }}</a>
+            </li>
+          </ng-container>
         </ng-container>
 
         <!-- STUDENT -->
         <ng-container *ngIf="auth.isStudent()">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/my-schedule">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/groups">My Class</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/subjects">Courses</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/teachers">Instructors</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/schedules">Schedule</a>
-          </li>
+          <ng-container
+            *ngFor="
+              let link of [
+                { path: 'my-schedule', label: 'Dashboard' },
+                { path: 'subjects', label: 'Courses' },
+                { path: 'teachers', label: 'Instructors' }
+              ]
+            "
+          >
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="link.path">{{ link.label }}</a>
+            </li>
+          </ng-container>
         </ng-container>
 
         <!-- LOGOUT -->
-        <li class="nav-item ms-lg-3" *ngIf="auth.isAuthenticated()">
-          <button
-            class="btn btn-light btn-sm text-primary fw-medium"
-            (click)="logout()"
-          >
-            Logout
-          </button>
-        </li>
+        <app-profile></app-profile>
       </ul>
     </div>
   </div>

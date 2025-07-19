@@ -19,7 +19,14 @@ export class LoginComponent {
   onSubmit(): void {
     this.auth.login(this.form).subscribe({
       next: () => {
-        window.location.href = '/';
+        const role = this.auth.getRole();
+        if (role === 'admin') {
+          window.location.href = '/';
+        } else if (role === 'teacher' || role === 'student') {
+          window.location.href = '/my-schedule';
+        } else {
+          window.location.href = '/forbidden';
+        }
       },
       error: () => {
         this.error = 'Invalid username or password';

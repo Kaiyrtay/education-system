@@ -7,6 +7,8 @@ import { subjectRoutes } from './subjects/subject.routes';
 import { teacherRoutes } from './teachers/teacher.routes';
 import { scheduleRoutes } from './schedules/schedule.routes';
 import { MyScheduleComponent } from './dashboard/my-schedule/my-schedule.component';
+import { RoleGuard } from './auth/role.guard';
+import { ForbiddenComponent } from './shared/pages/forbidden/forbidden.component';
 
 export const routes: Routes = [
   ...authRoutes,
@@ -16,5 +18,11 @@ export const routes: Routes = [
   ...subjectRoutes,
   ...teacherRoutes,
   ...scheduleRoutes,
-  { path: 'my-schedule', component: MyScheduleComponent },
+  {
+    path: 'my-schedule',
+    component: MyScheduleComponent,
+    canActivate: [RoleGuard],
+    data: { roles: ['teacher', 'student'] },
+  },
+  { path: 'forbidden', component: ForbiddenComponent },
 ];

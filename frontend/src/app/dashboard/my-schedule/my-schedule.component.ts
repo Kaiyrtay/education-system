@@ -39,7 +39,6 @@ export class MyScheduleComponent {
     this.http
       .get<any[]>('http://localhost:8000/api/schedules/my-schedule/')
       .subscribe((data) => {
-        console.log(data);
         this.schedule = data;
       });
   }
