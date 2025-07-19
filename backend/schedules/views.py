@@ -3,16 +3,29 @@ from teachers.models import Teacher
 from students.models import Student
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework import viewsets
 from .serializers import ScheduleSerializer
 from .models import Schedule
+from rest_framework import viewsets, permissions
 
-# Create your views here.
+
+class IsAdminOrReadOnly(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS:
+            return request.user.is_authenticated
+        return request.user.is_staff
 
 
 class ScheduleViewSet(viewsets.ModelViewSet):
-    queryset = Schedule.objects.select_related("group", "subject", "teacher")
     serializer_class = ScheduleSerializer
+    permission_classes = [IsAdminOrReadOnly]
+
+    def get_queryset(self):
+        user = self.request.user
+
+        if user.is_staff:
+            return Schedule.objects.select_related("group", "subject", "teacher").all()
+
+        return Schedule.objects.none()
 
 
 class MyScheduleView(APIView):
