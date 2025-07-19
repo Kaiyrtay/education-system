@@ -52,7 +52,7 @@
         <!-- INSTRUCTOR -->
         <ng-container *ngIf="auth.isTeacher()">
           <li class="nav-item">
-            <a class="nav-link" routerLink="/user">Profile</a>
+            <a class="nav-link" routerLink="/my-schedule">Dashboard</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/subjects">Courses</a>
@@ -71,7 +71,7 @@
         <!-- STUDENT -->
         <ng-container *ngIf="auth.isStudent()">
           <li class="nav-item">
-            <a class="nav-link" routerLink="/user">Profile</a>
+            <a class="nav-link" routerLink="/my-schedule">Dashboard</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/groups">My Class</a>

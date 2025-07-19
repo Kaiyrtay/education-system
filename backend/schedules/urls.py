@@ -1,9 +1,12 @@
+from django.urls import path
+from .views import MyScheduleView, ScheduleViewSet
 from rest_framework.routers import DefaultRouter
-from .views import ScheduleViewSet
 
 app_name = "schedules"
 
 router = DefaultRouter()
-router.register("", ScheduleViewSet, basename="schedule")
+router.register(r"", ScheduleViewSet, basename="schedule")
 
-urlpatterns = router.urls
+urlpatterns = [
+    path("my-schedule/", MyScheduleView.as_view(), name="my-schedule"),
+] + router.urls

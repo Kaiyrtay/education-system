@@ -6,6 +6,7 @@ import { studentRoutes } from './students/students.routes';
 import { subjectRoutes } from './subjects/subject.routes';
 import { teacherRoutes } from './teachers/teacher.routes';
 import { scheduleRoutes } from './schedules/schedule.routes';
+import { MyScheduleComponent } from './dashboard/my-schedule/my-schedule.component';
 
 export const routes: Routes = [
   ...authRoutes,
@@ -15,4 +16,5 @@ export const routes: Routes = [
   ...subjectRoutes,
   ...teacherRoutes,
   ...scheduleRoutes,
+  { path: 'my-schedule', component: MyScheduleComponent },
 ];
