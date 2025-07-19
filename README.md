@@ -1,3 +1,35 @@
+# Education System
+
+A full-stack role-based education management system with:
+
+- **Backend:** Django 5 + Django REST Framework (DRF)
+- **Frontend:** Angular 19 (standalone components + Bootstrap 5)
+- **Auth:** JWT-based (access + refresh tokens)
+- **Roles:** Admin, Teacher, Student
+
+The system provides complete functionality for user management, academic scheduling, and access control based on roles.
+
+---
+
+## Roles Summary
+
+- **Admin:** Full access to users, students, teachers, groups, subjects, and schedules.
+- **Teacher:** Access to their own profile, subjects, assigned groups, students, and schedules.
+- **Student:** Access to their own profile, enrolled subjects, teachers, group info, and schedules.
+
+---
+
+## Core Features
+
+- Login system with token refresh
+- Dynamic navbar with role‑based content
+- Protected Angular routes
+- Integrated REST API for:
+  - User management
+  - Teachers and students
+  - Class groups
+  - Subjects and class schedules
+
 # Education System – Backend API
 
 This is the backend REST API for managing users, students, teachers, subjects, and class schedules. It uses Django + Django REST Framework with JWT-based authentication.
