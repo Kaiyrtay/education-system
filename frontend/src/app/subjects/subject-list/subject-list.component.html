@@ -5,16 +5,20 @@
       class="card-header d-flex justify-content-between align-items-center bg-primary text-white"
     >
       <h5 class="m-0 d-flex align-items-center">
-        <i class="bi bi-journal-text me-2"></i> Subjects
+        <i class="bi bi-journal-text me-2"></i> Дисциплины
       </h5>
-      <a class="btn btn-light btn-sm fw-bold" routerLink="/subjects/create">
-        <i class="bi bi-plus-circle me-1"></i> Create Subject
+      <a
+        *ngIf="authService.isAdmin()"
+        class="btn btn-light btn-sm fw-bold"
+        routerLink="/subjects/create"
+      >
+        <i class="bi bi-plus-circle me-1"></i> Добавить дисциплину
       </a>
     </div>
 
     <!-- Empty state -->
     <div *ngIf="subjects.length === 0" class="alert alert-info m-3">
-      <i class="bi bi-info-circle me-2"></i> No subjects found.
+      <i class="bi bi-info-circle me-2"></i> Дисциплины не найдены.
     </div>
 
     <!-- Table -->
@@ -25,10 +29,10 @@
         <thead class="table-light">
           <tr>
             <th>ID</th>
-            <th>Code</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th style="width: 240px">Actions</th>
+            <th>Код</th>
+            <th>Название</th>
+            <th>Описание</th>
+            <th style="width: 240px">Действия</th>
           </tr>
         </thead>
         <tbody>
@@ -42,21 +46,25 @@
                 <a
                   class="btn btn-info text-white"
                   [routerLink]="['/subjects', s.id]"
-                  title="View"
+                  title="Просмотр"
                 >
                   <i class="bi bi-eye"></i>
                 </a>
+
+                <!-- Только для админов -->
                 <a
+                  *ngIf="authService.isAdmin()"
                   class="btn btn-warning text-dark"
                   [routerLink]="['/subjects', s.id, 'edit']"
-                  title="Edit"
+                  title="Редактировать"
                 >
                   <i class="bi bi-pencil-square"></i>
                 </a>
                 <button
+                  *ngIf="authService.isAdmin()"
                   class="btn btn-danger"
                   (click)="delete(s.id)"
-                  title="Delete"
+                  title="Удалить"
                 >
                   <i class="bi bi-trash"></i>
                 </button>

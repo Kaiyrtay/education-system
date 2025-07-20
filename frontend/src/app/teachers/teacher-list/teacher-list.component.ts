@@ -3,6 +3,7 @@ import { TeacherService } from '../teacher.service';
 import { Teacher } from '../teacher.model';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-teacher-list',
@@ -13,7 +14,10 @@ import { CommonModule } from '@angular/common';
 export class TeacherListComponent implements OnInit {
   teachers: Teacher[] = [];
 
-  constructor(private teacherService: TeacherService) {}
+  constructor(
+    private teacherService: TeacherService,
+    public authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.load();

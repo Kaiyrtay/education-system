@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Subject } from '../subject.model';
 import { SubjectService } from '../subject.service';
 import { RouterLink, RouterModule } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-subject-list',
@@ -16,7 +17,10 @@ export class SubjectListComponent implements OnInit {
   loading = false;
   error: string | null = null;
 
-  constructor(private subjectService: SubjectService) {}
+  constructor(
+    private subjectService: SubjectService,
+    public authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.fetch();

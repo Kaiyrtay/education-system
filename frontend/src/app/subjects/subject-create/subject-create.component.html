@@ -2,43 +2,43 @@
   <div class="card shadow-sm">
     <div class="card-header bg-primary text-white d-flex align-items-center">
       <i class="bi bi-plus-circle me-2"></i>
-      <h5 class="m-0">Create Subject</h5>
+      <h5 class="m-0">Добавить предмет</h5>
     </div>
     <div class="card-body">
       <form #subjectForm="ngForm" (ngSubmit)="submit(subjectForm)" novalidate>
         <div class="mb-3">
-          <label for="subjCode" class="form-label">Code</label>
+          <label for="subjCode" class="form-label">Код</label>
           <input
             id="subjCode"
             class="form-control"
             name="code"
             [(ngModel)]="form.code"
             required
-            placeholder="e.g. MATH101"
+            placeholder="напр. MATH101"
           />
         </div>
 
         <div class="mb-3">
-          <label for="subjName" class="form-label">Name</label>
+          <label for="subjName" class="form-label">Название</label>
           <input
             id="subjName"
             class="form-control"
             name="name"
             [(ngModel)]="form.name"
             required
-            placeholder="Mathematics"
+            placeholder="Математика"
           />
         </div>
 
         <div class="mb-3">
-          <label for="subjDesc" class="form-label">Description</label>
+          <label for="subjDesc" class="form-label">Описание</label>
           <textarea
             id="subjDesc"
             class="form-control"
             rows="3"
             name="desc"
             [(ngModel)]="form.desc"
-            placeholder="Optional description"
+            placeholder="Необязательное описание"
           ></textarea>
         </div>
 
@@ -48,10 +48,10 @@
             type="submit"
             [disabled]="subjectForm.invalid || saving"
           >
-            <i class="bi bi-check-circle me-1"></i> Create
+            <i class="bi bi-check-circle me-1"></i> Добавить
           </button>
           <a class="btn btn-outline-secondary" routerLink="/subjects">
-            <i class="bi bi-x-circle me-1"></i> Cancel
+            <i class="bi bi-x-circle me-1"></i> Отмена
           </a>
         </div>
 

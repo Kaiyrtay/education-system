@@ -2,7 +2,7 @@
   <table class="table table-bordered text-center align-middle">
     <thead class="table-light">
       <tr>
-        <th>Time</th>
+        <th>Время</th>
         <th *ngFor="let d of days">{{ d }}</th>
       </tr>
     </thead>
@@ -21,7 +21,7 @@
   </table>
 </div>
 
-<!-- Modal -->
+<!-- Модальное окно -->
 <div
   class="modal fade show d-block"
   *ngIf="selectedEvent"
@@ -37,18 +37,23 @@
         <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
       <div class="modal-body">
-        <p><strong>Teacher:</strong> {{ selectedEvent.teacher_info.name }}</p>
-        <p><strong>Group:</strong> {{ selectedEvent.group_info.name }}</p>
         <p>
-          <strong>Time:</strong> {{ selectedEvent.start_time }} –
+          <strong>Преподаватель:</strong> {{ selectedEvent.teacher_info.name }}
+        </p>
+        <p><strong>Группа:</strong> {{ selectedEvent.group_info.name }}</p>
+        <p>
+          <strong>Время:</strong> {{ selectedEvent.start_time }} –
           {{ selectedEvent.end_time }}
         </p>
         <p>
-          <strong>Weekday:</strong> {{ days[fixDay(selectedEvent.week_day)] }}
+          <strong>День недели:</strong>
+          {{ days[fixDay(selectedEvent.week_day)] }}
         </p>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" (click)="closeModal()">Close</button>
+        <button class="btn btn-secondary" (click)="closeModal()">
+          Закрыть
+        </button>
       </div>
     </div>
   </div>

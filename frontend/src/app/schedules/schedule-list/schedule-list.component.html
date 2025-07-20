@@ -1,20 +1,24 @@
 <div class="container mt-4">
   <div class="card shadow-sm">
-    <!-- Header -->
+    <!-- Заголовок -->
     <div
       class="card-header d-flex justify-content-between align-items-center bg-primary text-white"
     >
       <h5 class="m-0 d-flex align-items-center">
-        <i class="bi bi-calendar-week me-2"></i> Schedules
+        <i class="bi bi-calendar-week me-2"></i> Расписание
       </h5>
-      <a class="btn btn-light btn-sm fw-bold" routerLink="/schedules/create">
-        <i class="bi bi-plus-circle me-1"></i> Create Schedule
+      <a
+        class="btn btn-light btn-sm fw-bold"
+        routerLink="/schedules/create"
+        *ngIf="authService.isAdmin()"
+      >
+        <i class="bi bi-plus-circle me-1"></i> Добавить расписание
       </a>
     </div>
 
-    <!-- Empty / Error / Loading states -->
+    <!-- Загрузка / Ошибка / Пусто -->
     <div *ngIf="loading" class="alert alert-info m-3">
-      <i class="bi bi-arrow-repeat me-2"></i> Loading schedules...
+      <i class="bi bi-arrow-repeat me-2"></i> Загрузка расписания...
     </div>
     <div *ngIf="!loading && errorMessage" class="alert alert-danger m-3">
       <i class="bi bi-exclamation-triangle me-2"></i> {{ errorMessage }}
@@ -23,10 +27,10 @@
       *ngIf="!loading && !errorMessage && schedules.length === 0"
       class="alert alert-info m-3"
     >
-      <i class="bi bi-info-circle me-2"></i> No schedules found.
+      <i class="bi bi-info-circle me-2"></i> Расписания не найдены.
     </div>
 
-    <!-- Table -->
+    <!-- Таблица -->
     <div
       class="table-responsive"
       *ngIf="!loading && !errorMessage && schedules.length > 0"
@@ -36,13 +40,13 @@
       >
         <thead class="table-light">
           <tr>
-            <th>Group</th>
-            <th>Subject</th>
-            <th>Teacher</th>
-            <th>Day</th>
-            <th>Start</th>
-            <th>End</th>
-            <th style="width: 240px">Actions</th>
+            <th>Группа</th>
+            <th>Предмет</th>
+            <th>Преподаватель</th>
+            <th>День</th>
+            <th>Начало</th>
+            <th>Конец</th>
+            <th style="width: 240px">Действия</th>
           </tr>
         </thead>
         <tbody>
@@ -58,21 +62,23 @@
                 <a
                   class="btn btn-info text-white"
                   [routerLink]="['/schedules', s.id]"
-                  title="View"
+                  title="Просмотр"
                 >
                   <i class="bi bi-eye"></i>
                 </a>
                 <a
+                  *ngIf="authService.isAdmin()"
                   class="btn btn-warning text-dark"
                   [routerLink]="['/schedules', s.id, 'edit']"
-                  title="Edit"
+                  title="Редактировать"
                 >
                   <i class="bi bi-pencil-square"></i>
                 </a>
                 <button
+                  *ngIf="authService.isAdmin()"
                   class="btn btn-danger"
                   (click)="delete(s.id)"
-                  title="Delete"
+                  title="Удалить"
                 >
                   <i class="bi bi-trash"></i>
                 </button>

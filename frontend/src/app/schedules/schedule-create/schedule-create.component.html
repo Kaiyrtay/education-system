@@ -1,26 +1,21 @@
 <div class="container mt-4">
   <div class="card shadow-sm">
-    <!-- Card Header -->
     <div class="card-header d-flex align-items-center bg-primary text-white">
       <h5 class="m-0 d-flex align-items-center">
-        <i class="bi bi-plus-circle me-2"></i> Create Schedule
+        <i class="bi bi-plus-circle me-2"></i> Создать расписание
       </h5>
     </div>
 
-    <!-- Card Body -->
     <div class="card-body">
-      <!-- Server Error -->
       <div *ngIf="serverError" class="alert alert-danger mb-3">
         <i class="bi bi-exclamation-triangle me-2"></i> {{ serverError }}
       </div>
 
-      <!-- Form -->
       <form #schedForm="ngForm" (ngSubmit)="submit(schedForm)" novalidate>
-        <!-- Group -->
         <div class="mb-3">
-          <label for="group" class="form-label"
-            >Group <span class="text-danger">*</span></label
-          >
+          <label for="group" class="form-label">
+            Группа <span class="text-danger">*</span>
+          </label>
           <select
             id="group"
             class="form-select"
@@ -28,7 +23,7 @@
             required
             [(ngModel)]="form.group"
           >
-            <option [ngValue]="undefined">-- Select Group --</option>
+            <option [ngValue]="undefined">-- Выберите группу --</option>
             <option *ngFor="let g of groups" [ngValue]="g.id">
               {{ g.name || g.code || g.id }}
             </option>
@@ -37,15 +32,14 @@
             *ngIf="schedForm.submitted && !form.group"
             class="text-danger small"
           >
-            Group is required.
+            Группа обязательна для заполнения.
           </div>
         </div>
 
-        <!-- Subject -->
         <div class="mb-3">
-          <label for="subject" class="form-label"
-            >Subject <span class="text-danger">*</span></label
-          >
+          <label for="subject" class="form-label">
+            Предмет <span class="text-danger">*</span>
+          </label>
           <select
             id="subject"
             class="form-select"
@@ -53,7 +47,7 @@
             required
             [(ngModel)]="form.subject"
           >
-            <option [ngValue]="undefined">-- Select Subject --</option>
+            <option [ngValue]="undefined">-- Выберите предмет --</option>
             <option *ngFor="let s of subjects" [ngValue]="s.id">
               {{ s.name || s.code || s.id }}
             </option>
@@ -62,15 +56,14 @@
             *ngIf="schedForm.submitted && !form.subject"
             class="text-danger small"
           >
-            Subject is required.
+            Предмет обязателен для заполнения.
           </div>
         </div>
 
-        <!-- Teacher -->
         <div class="mb-3">
-          <label for="teacher" class="form-label"
-            >Teacher <span class="text-danger">*</span></label
-          >
+          <label for="teacher" class="form-label">
+            Преподаватель <span class="text-danger">*</span>
+          </label>
           <select
             id="teacher"
             class="form-select"
@@ -78,7 +71,7 @@
             required
             [(ngModel)]="form.teacher"
           >
-            <option [ngValue]="undefined">-- Select Teacher --</option>
+            <option [ngValue]="undefined">-- Выберите преподавателя --</option>
             <option *ngFor="let t of teachers" [ngValue]="t.id">
               {{ (t.user?.first_name || "") + " " + (t.user?.last_name || "") }}
               <span *ngIf="!(t.user?.first_name || t.user?.last_name)">
@@ -90,15 +83,14 @@
             *ngIf="schedForm.submitted && !form.teacher"
             class="text-danger small"
           >
-            Teacher is required.
+            Преподаватель обязателен для заполнения.
           </div>
         </div>
 
-        <!-- Week Day -->
         <div class="mb-3">
-          <label for="weekDay" class="form-label"
-            >Week Day <span class="text-danger">*</span></label
-          >
+          <label for="weekDay" class="form-label">
+            День недели <span class="text-danger">*</span>
+          </label>
           <select
             id="weekDay"
             class="form-select"
@@ -106,7 +98,7 @@
             required
             [(ngModel)]="form.week_day"
           >
-            <option [ngValue]="undefined">-- Select Day --</option>
+            <option [ngValue]="undefined">-- Выберите день --</option>
             <option *ngFor="let d of weekdays" [ngValue]="d.value">
               {{ d.label }}
             </option>
@@ -115,16 +107,15 @@
             *ngIf="schedForm.submitted && form.week_day == null"
             class="text-danger small"
           >
-            Day is required.
+            День обязателен для заполнения.
           </div>
         </div>
 
-        <!-- Start / End Time -->
         <div class="row">
           <div class="col-md-6 mb-3">
-            <label for="startTime" class="form-label"
-              >Start Time <span class="text-danger">*</span></label
-            >
+            <label for="startTime" class="form-label">
+              Время начала <span class="text-danger">*</span>
+            </label>
             <input
               type="time"
               id="startTime"
@@ -136,9 +127,9 @@
             />
           </div>
           <div class="col-md-6 mb-3">
-            <label for="endTime" class="form-label"
-              >End Time <span class="text-danger">*</span></label
-            >
+            <label for="endTime" class="form-label">
+              Время окончания <span class="text-danger">*</span>
+            </label>
             <input
               type="time"
               id="endTime"
@@ -151,22 +142,20 @@
           </div>
         </div>
 
-        <!-- Time Error -->
         <div *ngIf="timeError" class="text-danger small mb-3">
           {{ timeError }}
         </div>
 
-        <!-- Actions -->
         <div class="d-flex gap-2">
           <button
             class="btn btn-primary"
             type="submit"
             [disabled]="schedForm.invalid || !!timeError"
           >
-            <i class="bi bi-plus-circle me-1"></i> Create
+            <i class="bi bi-plus-circle me-1"></i> Создать
           </button>
           <a class="btn btn-outline-secondary" routerLink="/schedules">
-            <i class="bi bi-x-circle me-1"></i> Cancel
+            <i class="bi bi-x-circle me-1"></i> Отмена
           </a>
         </div>
       </form>

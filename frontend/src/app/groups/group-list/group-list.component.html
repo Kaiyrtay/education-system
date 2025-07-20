@@ -1,23 +1,29 @@
 <div class="container mt-4">
   <div class="card shadow-sm">
-    <!-- Header -->
+    <!-- Заголовок -->
     <div
       class="card-header d-flex justify-content-between align-items-center bg-primary text-white"
     >
       <h5 class="m-0 d-flex align-items-center">
-        <i class="bi bi-collection me-2"></i> Groups
+        <i class="bi bi-collection me-2"></i> Группы
       </h5>
-      <a class="btn btn-light btn-sm fw-bold" routerLink="/groups/create">
-        <i class="bi bi-plus-circle me-1"></i> Create Group
+
+      <!-- Только для админа -->
+      <a
+        *ngIf="authService.isAdmin()"
+        class="btn btn-light btn-sm fw-bold"
+        routerLink="/groups/create"
+      >
+        <i class="bi bi-plus-circle me-1"></i> Создать группу
       </a>
     </div>
 
-    <!-- Empty state -->
+    <!-- Пустой список -->
     <div *ngIf="groups.length === 0" class="alert alert-info m-3">
-      <i class="bi bi-info-circle me-2"></i> No groups found.
+      <i class="bi bi-info-circle me-2"></i> Группы не найдены.
     </div>
 
-    <!-- Table -->
+    <!-- Таблица -->
     <div class="table-responsive" *ngIf="groups.length > 0">
       <table
         class="table table-hover table-striped align-middle mb-0 text-center"
@@ -25,9 +31,9 @@
         <thead class="table-light">
           <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Code</th>
-            <th style="width: 240px">Actions</th>
+            <th>Название</th>
+            <th>Код</th>
+            <th style="width: 240px">Действия</th>
           </tr>
         </thead>
         <tbody>
@@ -40,21 +46,25 @@
                 <a
                   class="btn btn-info text-white"
                   [routerLink]="['/groups', group.id]"
-                  title="View"
+                  title="Просмотреть"
                 >
                   <i class="bi bi-eye"></i>
                 </a>
+
+                <!-- Только для админа -->
                 <a
+                  *ngIf="authService.isAdmin()"
                   class="btn btn-warning text-dark"
                   [routerLink]="['/groups', group.id, 'edit']"
-                  title="Edit"
+                  title="Редактировать"
                 >
                   <i class="bi bi-pencil-square"></i>
                 </a>
                 <button
+                  *ngIf="authService.isAdmin()"
                   class="btn btn-danger"
                   (click)="delete(group.id)"
-                  title="Delete"
+                  title="Удалить"
                 >
                   <i class="bi bi-trash"></i>
                 </button>

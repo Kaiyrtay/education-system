@@ -1,25 +1,20 @@
 <div class="container mt-4">
   <div class="card shadow-sm">
-    <!-- Card Header -->
     <div class="card-header d-flex align-items-center bg-primary text-white">
       <h5 class="m-0 d-flex align-items-center">
-        <i class="bi bi-pencil-square me-2"></i> Edit Schedule
+        <i class="bi bi-pencil-square me-2"></i> Редактировать расписание
       </h5>
     </div>
 
-    <!-- Card Body -->
     <div class="card-body" *ngIf="!loading; else loadingTpl">
-      <!-- Server Error -->
       <div *ngIf="serverError" class="alert alert-danger mb-3">
         <i class="bi bi-exclamation-triangle me-2"></i> {{ serverError }}
       </div>
 
-      <!-- Form -->
       <form #schedForm="ngForm" (ngSubmit)="submit(schedForm)" novalidate>
-        <!-- Group -->
         <div class="mb-3">
           <label class="form-label">
-            Group <span class="text-danger">*</span>
+            Группа <span class="text-danger">*</span>
           </label>
           <select
             class="form-select"
@@ -32,7 +27,7 @@
               (groupField.dirty || groupField.touched || schedForm.submitted)
             "
           >
-            <option [ngValue]="null">-- Select Group --</option>
+            <option [ngValue]="null">-- Выберите группу --</option>
             <option *ngFor="let g of groups" [ngValue]="g.id">
               {{ getGroupDisplayName(g) }}
             </option>
@@ -44,14 +39,13 @@
             "
             class="invalid-feedback"
           >
-            Group is required.
+            Группа обязательна.
           </div>
         </div>
 
-        <!-- Subject -->
         <div class="mb-3">
           <label class="form-label">
-            Subject <span class="text-danger">*</span>
+            Предмет <span class="text-danger">*</span>
           </label>
           <select
             class="form-select"
@@ -66,7 +60,7 @@
                 schedForm.submitted)
             "
           >
-            <option [ngValue]="null">-- Select Subject --</option>
+            <option [ngValue]="null">-- Выберите предмет --</option>
             <option *ngFor="let s of subjects" [ngValue]="s.id">
               {{ getSubjectDisplayName(s) }}
             </option>
@@ -80,14 +74,13 @@
             "
             class="invalid-feedback"
           >
-            Subject is required.
+            Предмет обязателен.
           </div>
         </div>
 
-        <!-- Teacher -->
         <div class="mb-3">
           <label class="form-label">
-            Teacher <span class="text-danger">*</span>
+            Преподаватель <span class="text-danger">*</span>
           </label>
           <select
             class="form-select"
@@ -102,7 +95,7 @@
                 schedForm.submitted)
             "
           >
-            <option [ngValue]="null">-- Select Teacher --</option>
+            <option [ngValue]="null">-- Выберите преподавателя --</option>
             <option *ngFor="let t of teachers" [ngValue]="t.id">
               {{ getTeacherDisplayName(t) }}
             </option>
@@ -116,14 +109,13 @@
             "
             class="invalid-feedback"
           >
-            Teacher is required.
+            Преподаватель обязателен.
           </div>
         </div>
 
-        <!-- Week Day -->
         <div class="mb-3">
           <label class="form-label">
-            Week Day <span class="text-danger">*</span>
+            День недели <span class="text-danger">*</span>
           </label>
           <select
             class="form-select"
@@ -138,7 +130,7 @@
                 schedForm.submitted)
             "
           >
-            <option [ngValue]="null">-- Select Day --</option>
+            <option [ngValue]="null">-- Выберите день --</option>
             <option *ngFor="let d of weekdays" [ngValue]="d.value">
               {{ d.label }}
             </option>
@@ -152,15 +144,14 @@
             "
             class="invalid-feedback"
           >
-            Day is required.
+            День обязателен.
           </div>
         </div>
 
-        <!-- Start / End Time -->
         <div class="row">
           <div class="col-md-6 mb-3">
             <label class="form-label">
-              Start Time <span class="text-danger">*</span>
+              Время начала <span class="text-danger">*</span>
             </label>
             <input
               type="time"
@@ -187,12 +178,12 @@
               "
               class="invalid-feedback"
             >
-              Start time is required.
+              Время начала обязательно.
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label class="form-label">
-              End Time <span class="text-danger">*</span>
+              Время окончания <span class="text-danger">*</span>
             </label>
             <input
               type="time"
@@ -219,17 +210,15 @@
               "
               class="invalid-feedback"
             >
-              End time is required.
+              Время окончания обязательно.
             </div>
           </div>
         </div>
 
-        <!-- Time Error -->
         <div *ngIf="timeError" class="alert alert-danger mb-3">
           <i class="bi bi-exclamation-triangle me-2"></i> {{ timeError }}
         </div>
 
-        <!-- Actions -->
         <div class="d-flex gap-2">
           <button
             class="btn btn-primary"
@@ -240,7 +229,7 @@
               *ngIf="submitting"
               class="spinner-border spinner-border-sm me-2"
             ></span>
-            {{ submitting ? "Saving..." : "Save" }}
+            {{ submitting ? "Сохранение..." : "Сохранить" }}
           </button>
 
           <button
@@ -249,7 +238,7 @@
             (click)="delete()"
             [disabled]="submitting"
           >
-            <i class="bi bi-trash me-1"></i> Delete
+            <i class="bi bi-trash me-1"></i> Удалить
           </button>
 
           <a
@@ -257,7 +246,7 @@
             routerLink="/schedules"
             [class.disabled]="submitting"
           >
-            <i class="bi bi-arrow-left me-1"></i> Cancel
+            <i class="bi bi-arrow-left me-1"></i> Отмена
           </a>
         </div>
       </form>
@@ -265,10 +254,9 @@
   </div>
 </div>
 
-<!-- Loading Template -->
 <ng-template #loadingTpl>
   <div class="p-4 text-center text-muted">
     <div class="spinner-border me-2" role="status"></div>
-    Loading schedule...
+    Загрузка расписания...
   </div>
 </ng-template>

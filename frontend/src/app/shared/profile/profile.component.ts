@@ -33,21 +33,22 @@ import { AuthService } from '../../auth/auth.service';
       >
         <li>
           <div class="dropdown-header">
-            <strong
-              >{{ profile.user.first_name }}
-              {{ profile.user.last_name }}</strong
-            >
+            <strong>
+              {{ profile.user.first_name }} {{ profile.user.last_name }}
+            </strong>
             <br />
             <small class="text-muted">{{ profile.user.email }}</small>
             <br />
             <small class="text-muted">{{ profile.role | titlecase }}</small>
 
             <div *ngIf="profile.role === 'student'" class="mt-2">
-              <small class="text-muted">Group: {{ profile.group.name }}</small>
+              <small class="text-muted">Группа: {{ profile.group.name }}</small>
             </div>
 
             <div *ngIf="profile.role === 'teacher'" class="mt-2">
-              <small class="text-muted">ID: {{ profile.teacher.id }}</small>
+              <small class="text-muted"
+                >ID преподавателя: {{ profile.teacher.id }}</small
+              >
             </div>
           </div>
         </li>
@@ -55,7 +56,7 @@ import { AuthService } from '../../auth/auth.service';
         <li>
           <button class="dropdown-item text-danger" (click)="logout()">
             <i class="bi bi-box-arrow-right me-2"></i>
-            Logout
+            Выйти
           </button>
         </li>
       </ul>

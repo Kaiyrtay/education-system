@@ -3,21 +3,23 @@
     <div class="card-header bg-warning text-dark">
       <h5 class="m-0 d-flex align-items-center">
         <i class="bi bi-person-lines-fill me-2"></i>
-        Edit Student
+        Редактирование студента
       </h5>
     </div>
 
     <div class="card-body">
       <form (ngSubmit)="submit()" #editForm="ngForm" novalidate>
         <div class="mb-3">
-          <label for="studentUsername" class="form-label">Username</label>
+          <label for="studentUsername" class="form-label"
+            >Имя пользователя</label
+          >
           <input
             id="studentUsername"
             class="form-control"
             name="username"
             [(ngModel)]="form.user.username"
             required
-            placeholder="Enter username"
+            placeholder="Введите имя пользователя"
           />
         </div>
 
@@ -36,7 +38,7 @@
 
         <div class="mb-3">
           <label for="studentPassword" class="form-label"
-            >Password (leave blank to keep current)</label
+            >Пароль (оставьте пустым, чтобы не изменять)</label
           >
           <input
             id="studentPassword"
@@ -44,41 +46,41 @@
             type="password"
             name="password"
             [(ngModel)]="form.user.password"
-            placeholder="New password (optional)"
+            placeholder="Новый пароль (необязательно)"
           />
         </div>
 
         <div class="mb-3">
-          <label for="studentFirstName" class="form-label">First Name</label>
+          <label for="studentFirstName" class="form-label">Имя</label>
           <input
             id="studentFirstName"
             class="form-control"
             name="first_name"
             [(ngModel)]="form.user.first_name"
-            placeholder="First name"
+            placeholder="Введите имя"
           />
         </div>
 
         <div class="mb-3">
-          <label for="studentLastName" class="form-label">Last Name</label>
+          <label for="studentLastName" class="form-label">Фамилия</label>
           <input
             id="studentLastName"
             class="form-control"
             name="last_name"
             [(ngModel)]="form.user.last_name"
-            placeholder="Last name"
+            placeholder="Введите фамилию"
           />
         </div>
 
         <div class="mb-3">
-          <label for="studentGroup" class="form-label">Group</label>
+          <label for="studentGroup" class="form-label">Группа</label>
           <select
             id="studentGroup"
             class="form-select"
             name="group"
             [(ngModel)]="form.group"
           >
-            <option [ngValue]="undefined">-- No Group --</option>
+            <option [ngValue]="undefined">-- Без группы --</option>
             <option *ngFor="let g of groups" [ngValue]="g.id">
               {{ g.name }} ({{ g.code }})
             </option>
@@ -91,15 +93,15 @@
             type="submit"
             [disabled]="editForm.invalid"
           >
-            <i class="bi bi-save me-1"></i> Save
+            <i class="bi bi-save me-1"></i> Сохранить
           </button>
 
           <button class="btn btn-danger" type="button" (click)="delete()">
-            <i class="bi bi-trash me-1"></i> Delete
+            <i class="bi bi-trash me-1"></i> Удалить
           </button>
 
           <a routerLink="/students" class="btn btn-outline-secondary">
-            <i class="bi bi-x-circle me-1"></i> Cancel
+            <i class="bi bi-x-circle me-1"></i> Отмена
           </a>
         </div>
       </form>
@@ -110,6 +112,6 @@
 <div class="container mt-4" *ngIf="loading">
   <div class="alert alert-info">
     <div class="spinner-border spinner-border-sm me-2" role="status"></div>
-    Loading student...
+    Загрузка данных студента...
   </div>
 </div>

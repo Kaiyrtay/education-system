@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { StudentService } from '../students.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-student-list',
@@ -12,7 +13,10 @@ import { StudentService } from '../students.service';
 export class StudentListComponent implements OnInit {
   students: any[] = [];
 
-  constructor(private studentService: StudentService) {}
+  constructor(
+    private studentService: StudentService,
+    public authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.load();

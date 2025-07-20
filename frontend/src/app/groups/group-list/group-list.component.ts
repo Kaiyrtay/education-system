@@ -3,6 +3,7 @@ import { GroupModel } from '../group.model.model';
 import { GroupService } from '../group.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-group-list',
@@ -12,7 +13,10 @@ import { RouterLink } from '@angular/router';
 })
 export class GroupListComponent {
   groups: GroupModel[] = [];
-  constructor(private groupService: GroupService) {}
+  constructor(
+    private groupService: GroupService,
+    public authService: AuthService
+  ) {}
   ngOnInit() {
     this.groupService.list().subscribe({
       next: (res) => {

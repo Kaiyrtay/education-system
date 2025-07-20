@@ -4,7 +4,7 @@
   <div *ngIf="subject" class="card shadow-sm">
     <div class="card-header bg-primary text-white d-flex align-items-center">
       <i class="bi bi-journal-text me-2"></i>
-      <h5 class="m-0">Subject Details</h5>
+      <h5 class="m-0">Информация о предмете</h5>
     </div>
     <div class="card-body">
       <ul class="list-group mb-4">
@@ -12,13 +12,13 @@
           <strong>ID:</strong> <span>{{ subject.id }}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between">
-          <strong>Code:</strong> <span>{{ subject.code }}</span>
+          <strong>Код:</strong> <span>{{ subject.code }}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between">
-          <strong>Name:</strong> <span>{{ subject.name }}</span>
+          <strong>Название:</strong> <span>{{ subject.name }}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between">
-          <strong>Description:</strong>
+          <strong>Описание:</strong>
           <span>{{ subject.desc || "—" }}</span>
         </li>
       </ul>
@@ -28,26 +28,26 @@
           class="btn btn-warning"
           [routerLink]="['/subjects', subject.id, 'edit']"
         >
-          <i class="bi bi-pencil-square me-1"></i> Edit
+          <i class="bi bi-pencil-square me-1"></i> Редактировать
         </a>
         <button class="btn btn-danger" (click)="delete()">
-          <i class="bi bi-trash me-1"></i> Delete
+          <i class="bi bi-trash me-1"></i> Удалить
         </button>
         <a routerLink="/subjects" class="btn btn-outline-secondary">
-          <i class="bi bi-arrow-left me-1"></i> Back
+          <i class="bi bi-arrow-left me-1"></i> Назад
         </a>
       </div>
     </div>
   </div>
 
   <div *ngIf="!subject && !error" class="alert alert-info">
-    Subject not found.
+    Предмет не найден.
   </div>
 </div>
 
 <div class="container mt-4" *ngIf="loading">
   <div class="alert alert-info">
     <div class="spinner-border spinner-border-sm me-2" role="status"></div>
-    Loading subject...
+    Загрузка предмета...
   </div>
 </div>

@@ -3,7 +3,7 @@
     <a class="navbar-brand fw-bold d-flex align-items-center" routerLink="/">
       <img
         src="assets/logo.png"
-        alt="EduSystem Logo"
+        alt="Логотип EduSystem"
         height="32"
         class="me-2"
       />
@@ -17,7 +17,7 @@
       data-bs-target="#navbarNav"
       aria-controls="navbarNav"
       aria-expanded="false"
-      aria-label="Toggle navigation"
+      aria-label="Переключить навигацию"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -29,12 +29,12 @@
           <ng-container
             *ngFor="
               let link of [
-                { path: 'users', label: 'Users' },
-                { path: 'teachers', label: 'Teachers' },
-                { path: 'students', label: 'Students' },
-                { path: 'groups', label: 'Groups' },
-                { path: 'subjects', label: 'Subjects' },
-                { path: 'schedules', label: 'Schedules' }
+                { path: 'users', label: 'Пользователи' },
+                { path: 'teachers', label: 'Преподаватели' },
+                { path: 'students', label: 'Студенты' },
+                { path: 'groups', label: 'Группы' },
+                { path: 'subjects', label: 'Предметы' },
+                { path: 'schedules', label: 'Расписания' }
               ]
             "
           >
@@ -49,10 +49,10 @@
           <ng-container
             *ngFor="
               let link of [
-                { path: 'my-schedule', label: 'Dashboard' },
-                { path: 'subjects', label: 'Courses' },
-                { path: 'groups', label: 'Classes' },
-                { path: 'students', label: 'Students' }
+                { path: 'my-schedule', label: 'Панель' },
+                { path: 'subjects', label: 'Курсы' },
+                { path: 'groups', label: 'Классы' },
+                { path: 'students', label: 'Студенты' }
               ]
             "
           >
@@ -67,9 +67,9 @@
           <ng-container
             *ngFor="
               let link of [
-                { path: 'my-schedule', label: 'Dashboard' },
-                { path: 'subjects', label: 'Courses' },
-                { path: 'teachers', label: 'Instructors' }
+                { path: 'my-schedule', label: 'Панель' },
+                { path: 'subjects', label: 'Курсы' },
+                { path: 'teachers', label: 'Преподаватели' }
               ]
             "
           >
@@ -79,7 +79,7 @@
           </ng-container>
         </ng-container>
 
-        <!-- LOGOUT -->
+        <!-- LOGOUT / PROFILE -->
         <app-profile></app-profile>
       </ul>
     </div>

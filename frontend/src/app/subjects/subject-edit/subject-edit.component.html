@@ -4,12 +4,12 @@
   <div class="card shadow-sm" *ngIf="!error">
     <div class="card-header bg-warning text-dark d-flex align-items-center">
       <i class="bi bi-pencil-square me-2"></i>
-      <h5 class="m-0">Edit Subject</h5>
+      <h5 class="m-0">Редактировать предмет</h5>
     </div>
     <div class="card-body">
       <form #subjectForm="ngForm" (ngSubmit)="submit(subjectForm)" novalidate>
         <div class="mb-3">
-          <label for="subjCode" class="form-label">Code</label>
+          <label for="subjCode" class="form-label">Код</label>
           <input
             id="subjCode"
             class="form-control"
@@ -20,7 +20,7 @@
         </div>
 
         <div class="mb-3">
-          <label for="subjName" class="form-label">Name</label>
+          <label for="subjName" class="form-label">Название</label>
           <input
             id="subjName"
             class="form-control"
@@ -31,14 +31,14 @@
         </div>
 
         <div class="mb-3">
-          <label for="subjDesc" class="form-label">Description</label>
+          <label for="subjDesc" class="form-label">Описание</label>
           <textarea
             id="subjDesc"
             class="form-control"
             rows="3"
             name="desc"
             [(ngModel)]="form.desc"
-            placeholder="Optional description"
+            placeholder="Необязательное описание"
           ></textarea>
         </div>
 
@@ -48,13 +48,13 @@
             type="submit"
             [disabled]="subjectForm.invalid || saving"
           >
-            <i class="bi bi-save me-1"></i> Update
+            <i class="bi bi-save me-1"></i> Сохранить
           </button>
           <button class="btn btn-danger" type="button" (click)="delete()">
-            <i class="bi bi-trash me-1"></i> Delete
+            <i class="bi bi-trash me-1"></i> Удалить
           </button>
           <a class="btn btn-outline-secondary" [routerLink]="['/subjects', id]">
-            <i class="bi bi-arrow-left me-1"></i> Cancel
+            <i class="bi bi-arrow-left me-1"></i> Отмена
           </a>
         </div>
 
@@ -68,7 +68,7 @@
   <div class="container mt-4">
     <div class="alert alert-info">
       <div class="spinner-border spinner-border-sm me-2" role="status"></div>
-      Loading subject...
+      Загрузка предмета...
     </div>
   </div>
 </ng-template>

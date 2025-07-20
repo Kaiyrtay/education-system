@@ -2,7 +2,7 @@
   <div class="card shadow-sm">
     <div class="card-header bg-primary text-white d-flex align-items-center">
       <i class="bi bi-person-lines-fill me-2"></i>
-      <h5 class="m-0">Student Details</h5>
+      <h5 class="m-0">Информация о студенте</h5>
     </div>
 
     <div class="card-body">
@@ -11,23 +11,23 @@
           <strong>ID:</strong> <span>{{ student.id }}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between">
-          <strong>Username:</strong>
-          <span>{{ student.user?.username || "N/A" }}</span>
+          <strong>Имя пользователя:</strong>
+          <span>{{ student.user?.username || "—" }}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between">
           <strong>Email:</strong>
-          <span>{{ student.user?.email || "N/A" }}</span>
+          <span>{{ student.user?.email || "—" }}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between">
-          <strong>Name:</strong>
+          <strong>ФИО:</strong>
           <span>
             {{ student.user?.first_name || "" }}
             {{ student.user?.last_name || "" }}
           </span>
         </li>
         <li class="list-group-item d-flex justify-content-between">
-          <strong>Group:</strong>
-          <span>{{ student.group || "No Group" }}</span>
+          <strong>Группа:</strong>
+          <span>{{ student.group || "Без группы" }}</span>
         </li>
       </ul>
 
@@ -36,13 +36,13 @@
           class="btn btn-warning"
           [routerLink]="['/students', student.id, 'edit']"
         >
-          <i class="bi bi-pencil-square me-1"></i> Edit
+          <i class="bi bi-pencil-square me-1"></i> Редактировать
         </a>
         <button class="btn btn-danger" (click)="delete()">
-          <i class="bi bi-trash me-1"></i> Delete
+          <i class="bi bi-trash me-1"></i> Удалить
         </button>
         <a routerLink="/students" class="btn btn-outline-secondary">
-          <i class="bi bi-arrow-left me-1"></i> Back
+          <i class="bi bi-arrow-left me-1"></i> Назад
         </a>
       </div>
     </div>
@@ -52,6 +52,6 @@
 <div class="container mt-4" *ngIf="loading">
   <div class="alert alert-info">
     <div class="spinner-border spinner-border-sm me-2" role="status"></div>
-    Loading student details...
+    Загрузка данных студента...
   </div>
 </div>

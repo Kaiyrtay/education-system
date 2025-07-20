@@ -2,25 +2,25 @@
   <div class="card shadow-sm">
     <div class="card-header bg-primary text-white d-flex align-items-center">
       <i class="bi bi-person-plus-fill me-2"></i>
-      <h5 class="m-0">Create Student</h5>
+      <h5 class="m-0">Создать студента</h5>
     </div>
 
     <div class="card-body">
       <form (ngSubmit)="submit()" #stuForm="ngForm" novalidate>
         <div class="mb-3">
-          <label for="username" class="form-label">Username</label>
+          <label for="username" class="form-label">Имя пользователя</label>
           <input
             id="username"
             class="form-control"
             name="username"
             [(ngModel)]="form.user.username"
             required
-            placeholder="Enter username"
+            placeholder="Введите имя пользователя"
           />
         </div>
 
         <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
+          <label for="email" class="form-label">Электронная почта</label>
           <input
             id="email"
             class="form-control"
@@ -33,7 +33,7 @@
         </div>
 
         <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
+          <label for="password" class="form-label">Пароль</label>
           <input
             id="password"
             class="form-control"
@@ -41,41 +41,41 @@
             name="password"
             [(ngModel)]="form.user.password"
             required
-            placeholder="Enter password"
+            placeholder="Введите пароль"
           />
         </div>
 
         <div class="mb-3">
-          <label for="firstName" class="form-label">First Name</label>
+          <label for="firstName" class="form-label">Имя</label>
           <input
             id="firstName"
             class="form-control"
             name="first_name"
             [(ngModel)]="form.user.first_name"
-            placeholder="First name"
+            placeholder="Имя"
           />
         </div>
 
         <div class="mb-3">
-          <label for="lastName" class="form-label">Last Name</label>
+          <label for="lastName" class="form-label">Фамилия</label>
           <input
             id="lastName"
             class="form-control"
             name="last_name"
             [(ngModel)]="form.user.last_name"
-            placeholder="Last name"
+            placeholder="Фамилия"
           />
         </div>
 
         <div class="mb-3">
-          <label for="groupSelect" class="form-label">Group</label>
+          <label for="groupSelect" class="form-label">Группа</label>
           <select
             id="groupSelect"
             class="form-select"
             name="group"
             [(ngModel)]="form.group"
           >
-            <option [ngValue]="undefined">-- No Group --</option>
+            <option [ngValue]="undefined">-- Без группы --</option>
             <option *ngFor="let g of groups" [ngValue]="g.id">
               {{ g.name }} ({{ g.code }})
             </option>
@@ -88,10 +88,10 @@
             type="submit"
             [disabled]="stuForm.invalid"
           >
-            <i class="bi bi-plus-circle me-1"></i> Create
+            <i class="bi bi-plus-circle me-1"></i> Создать
           </button>
           <a class="btn btn-outline-secondary" routerLink="/students">
-            <i class="bi bi-x-circle me-1"></i> Cancel
+            <i class="bi bi-x-circle me-1"></i> Отмена
           </a>
         </div>
       </form>

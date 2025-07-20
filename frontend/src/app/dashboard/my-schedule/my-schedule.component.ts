@@ -11,15 +11,8 @@ import { CommonModule } from '@angular/common';
 export class MyScheduleComponent {
   private http = inject(HttpClient);
 
-  days = [
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-    'Sunday',
-  ];
+  days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+
   hours: string[] = [];
   schedule: any[] = [];
   selectedEvent: any = null;

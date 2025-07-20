@@ -2,11 +2,11 @@
   <div class="card shadow-sm">
     <div class="card-header bg-primary text-white d-flex align-items-center">
       <i class="bi bi-person-badge-fill me-2"></i>
-      <h5 class="m-0">Teacher Details</h5>
+      <h5 class="m-0">Информация о преподавателе</h5>
     </div>
 
     <div *ngIf="loading" class="alert alert-secondary m-3">
-      Loading teacher details...
+      Загрузка данных преподавателя...
     </div>
 
     <div *ngIf="errorMessage" class="alert alert-danger m-3">
@@ -17,13 +17,13 @@
       <ul class="list-group mb-4">
         <li class="list-group-item"><strong>ID:</strong> {{ teacher.id }}</li>
         <li class="list-group-item">
-          <strong>Username:</strong> {{ teacher.user?.username || "—" }}
+          <strong>Имя пользователя:</strong> {{ teacher.user?.username || "—" }}
         </li>
         <li class="list-group-item">
           <strong>Email:</strong> {{ teacher.user?.email || "—" }}
         </li>
         <li class="list-group-item">
-          <strong>Name:</strong>
+          <strong>Имя:</strong>
           {{ teacher.user?.first_name || "" }}
           {{ teacher.user?.last_name || "" }}
         </li>
@@ -34,13 +34,13 @@
           class="btn btn-warning"
           [routerLink]="['/teachers', teacher.id, 'edit']"
         >
-          <i class="bi bi-pencil-square me-1"></i> Edit
+          <i class="bi bi-pencil-square me-1"></i> Редактировать
         </a>
         <button class="btn btn-danger" (click)="delete()">
-          <i class="bi bi-trash me-1"></i> Delete
+          <i class="bi bi-trash me-1"></i> Удалить
         </button>
         <a class="btn btn-outline-secondary" routerLink="/teachers">
-          <i class="bi bi-arrow-left me-1"></i> Back to List
+          <i class="bi bi-arrow-left me-1"></i> Назад к списку
         </a>
       </div>
     </div>

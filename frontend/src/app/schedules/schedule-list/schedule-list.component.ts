@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ScheduleService } from '../schedule.service';
 import { WEEKDAYS } from '../weekdays';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-schedule-list',
@@ -17,7 +18,10 @@ export class ScheduleListComponent implements OnInit {
   loading = false;
   errorMessage = '';
 
-  constructor(private scheduleService: ScheduleService) {}
+  constructor(
+    private scheduleService: ScheduleService,
+    public authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.load();

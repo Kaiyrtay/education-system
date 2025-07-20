@@ -1,27 +1,29 @@
 <div class="container mt-4" *ngIf="group">
   <div class="card shadow-sm">
     <div class="card-header bg-primary text-white">
-      <h5 class="m-0">Group Details</h5>
+      <h5 class="m-0">Информация о группе</h5>
     </div>
     <div class="card-body">
       <ul class="list-group mb-4">
         <li class="list-group-item">
-          <strong>ID:</strong> {{ group.id ?? "N/A" }}
+          <strong>ID:</strong> {{ group.id ?? "Н/Д" }}
         </li>
-        <li class="list-group-item"><strong>Name:</strong> {{ group.name }}</li>
-        <li class="list-group-item"><strong>Code:</strong> {{ group.code }}</li>
+        <li class="list-group-item">
+          <strong>Название:</strong> {{ group.name }}
+        </li>
+        <li class="list-group-item"><strong>Код:</strong> {{ group.code }}</li>
       </ul>
 
       <div class="d-flex justify-content-start gap-2">
         <a class="btn btn-outline-secondary" [routerLink]="['/groups']">
-          <i class="bi bi-arrow-left"></i> Back
+          <i class="bi bi-arrow-left"></i> Назад
         </a>
         <a
           class="btn btn-warning"
           [routerLink]="['/groups', group.id, 'edit']"
           *ngIf="group.id"
         >
-          <i class="bi bi-pencil"></i> Edit
+          <i class="bi bi-pencil"></i> Редактировать
         </a>
         <button
           type="button"
@@ -29,7 +31,7 @@
           (click)="delete()"
           [disabled]="!group.id"
         >
-          <i class="bi bi-trash"></i> Delete
+          <i class="bi bi-trash"></i> Удалить
         </button>
       </div>
     </div>

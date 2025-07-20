@@ -4,6 +4,7 @@ import { GroupService } from '../group.service';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-group-create',
@@ -13,7 +14,11 @@ import { FormsModule } from '@angular/forms';
 })
 export class GroupCreateComponent {
   form: GroupModel = { name: '', code: '' };
-  constructor(private groupService: GroupService, private router: Router) {}
+  constructor(
+    private groupService: GroupService,
+    private router: Router,
+    public authService: AuthService
+  ) {}
 
   submit(): void {
     this.groupService.create(this.form).subscribe({
